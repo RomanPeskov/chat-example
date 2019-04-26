@@ -1,0 +1,40 @@
+.chat-container {
+    width: 500px;
+    margin: 0px auto;
+}
+
+.chat-title {
+    margin-top: 10px;
+}
+
+.messages {
+    height: 500px;
+    margin-top: 10px;
+    overflow: auto;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+}
+
+.message {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    overflow: auto;
+    border-radius: 15px;
+    min-height: 20px;
+}
+.message-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chat-form {
+    margin-top: 10px;
+}
+
+.time {
+    font-size: 10px;
+    background-color: transparent;
+    text-align: right;
+}
+
