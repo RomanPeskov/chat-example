@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button } from 'reactstrap';
 
-export default class MessageList extends Component {
-  renderMessages = () => {
-    const {messages = [], loading, deleteMessage} = this.props;
+const MessageList = props => {
+  const renderMessages = () => {
+    const {messages = [], loading, deleteMessage} = props;
 
     if (!loading && messages && messages.length > 0) {
       return messages.map(message => {
@@ -26,11 +26,11 @@ export default class MessageList extends Component {
     }
   };
 
-  render() {
     return (
       <div className="messages">
-        {this.renderMessages()}
+        {renderMessages()}
       </div>
     );
-  }
-}
+};
+
+export default MessageList;

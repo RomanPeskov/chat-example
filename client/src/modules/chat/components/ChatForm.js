@@ -1,26 +1,23 @@
-import React, { Component } from 'react';
-
+import React, { useState } from 'react';
 import { Button, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 
-export default class ChatForm extends Component {
-  state = {
-    text: ''
+const ChatForm = props => {
+  const { addMessage } = props;
+  const [text, setText] = useState('');
+
+  const onSubmit = () => {
+    addMessage(text);
+    setText('');
   };
 
-  onSubmit = () => {
-    this.props.addMessage(this.state.text);
-    this.setState({ text: '' });
-  };
+  return (
+    <InputGroup className="chat-form">
+      <Input onChange={({ target: { value } }) => setText(value)} value={text} />
+      <InputGroupAddon addonType="append">
+        <Button color="secondary" onClick={() => onSubmit()}>Submit</Button>
+      </InputGroupAddon>
+    </InputGroup>
+  );
+};
 
-  render() {
-    const { text } = this.state;
-    return (
-      <InputGroup className="chat-form">
-        <Input onChange={({ target: { value } }) => this.setState({ text: value })} value={text} />
-        <InputGroupAddon addonType="append">
-          <Button color="secondary" onClick={() => this.onSubmit()}>Submit</Button>
-        </InputGroupAddon>
-      </InputGroup>
-    );
-  }
-}
+export default ChatForm;

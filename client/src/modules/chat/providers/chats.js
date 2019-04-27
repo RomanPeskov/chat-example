@@ -2,7 +2,7 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 
-export const GET_CHATS = gql`
+export const CHATS = gql`
   query chats {
     chats {
       id
@@ -13,7 +13,7 @@ export const GET_CHATS = gql`
 
 const chats = Component => props => {
   return (
-    <Query query={GET_CHATS}>
+    <Query query={CHATS}>
       {({ data }) => {
         if (data) {
           return (
