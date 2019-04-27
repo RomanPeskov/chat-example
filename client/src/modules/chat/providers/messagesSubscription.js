@@ -16,18 +16,18 @@ export const MESSAGES_SUBSCRIPTION = gql`
 `;
 
 export default Component => {
-  return class WithMessagesSubscription extends React.Component {
-    render() {
-      return (
-        <Subscription subscription={MESSAGES_SUBSCRIPTION} variables={{ chatId: this.props.chatId }}>
-          {({data, loading}) => {
-            if (!loading && data) {
-              return <Component {...this.props} messagesUpdated={data.messagesUpdated}/>;
-            }
-            return <Component {...this.props} />;
-          }}
-        </Subscription>
-      );
-    }
+  const WithMessagesSubscription = props => {
+    return (
+      <Subscription subscription={MESSAGES_SUBSCRIPTION} variables={{ chatId: props.chatId }}>
+        {({data, loading}) => {
+          if (!loading && data) {
+            return <Component {...props} messagesUpdated={data.messagesUpdated}/>;
+          }
+          return <Component {...props} />;
+        }}
+      </Subscription>
+    );
   };
+
+  return WithMessagesSubscription;
 };
