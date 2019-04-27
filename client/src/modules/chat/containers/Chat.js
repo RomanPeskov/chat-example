@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Container, Row, Col, Label, Input } from 'reactstrap';
 
-import {addMessage, messages, deleteMessage, messagesSubscription} from '../providers';
+import { chats, messages, addMessage, deleteMessage, messagesSubscription} from '../providers';
 import {MessageList, ChatForm} from '../components';
 import '../styles/styles.css';
 
@@ -17,6 +17,7 @@ const onAddMessage = (prev, newMessage) => {
 
 const onDeleteMessage = (prev, id) => ({...prev, messages: prev.messages.filter(({_id}) => id !== _id)});
 
+@chats
 @messages
 @addMessage
 @deleteMessage
@@ -43,6 +44,11 @@ export default class Chat extends Component {
     });
   };
 
+  renderChatOptions = () => {
+    const { chats } = this.props;
+    return chats ? chats.map(({ id, name }) => <option key={id} value={id}>{name}</option>) : null;
+  };
+
   render() {
     const {messages, loading, addMessage, deleteMessage} = this.props;
     return (
@@ -52,9 +58,8 @@ export default class Chat extends Component {
             <h2 className="text-center chat-title">Chat</h2>
             <hr/>
             <Label for="exampleSelect">Select Chat</Label>
-            <Input type="select" name="select" id="exampleSelect" onChange={({ target: { value } }) => console.log('value === ', value)} onSelect={val => console.log('val === ', val)}>
-              <option value="1">Chat1</option>
-              <option value="2">Chat2</option>
+            <Input type="select" name="select" id="exampleSelect" onChange={({ target: { value } }) => console.log('value === ', value)} >
+              {this.renderChatOptions()}
             </Input>
             <hr/>
             <div className="chat-container">

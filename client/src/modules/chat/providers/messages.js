@@ -14,11 +14,12 @@ export const GET_MESSAGES = gql`
 
 const messages = Component => props => {
   return (
-    <Query query={GET_MESSAGES} variables={{ chatId: 1 }}>
+    <Query query={GET_MESSAGES} variables={{ chatId: props.chatId }} skip={!props.chatId}>
       {({ loading, data, subscribeToMore, updateQuery }) => {
-        return (
-          <Component {...props} updateQuery={updateQuery} subscribeToMore={subscribeToMore} loading={loading} messages={data.messages} />
-        );
+        if (data) {
+          return <Component {...props} updateQuery={updateQuery} subscribeToMore={subscribeToMore} loading={loading} messages={data.messages} />
+        }
+        return <Component {...props} />
       }}
     </Query>
   );

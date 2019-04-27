@@ -4,10 +4,10 @@ const {PubSub} = require('apollo-server-express');
 const pubsub = new PubSub();
 const MESSAGES_SUBSCRIPTION = 'messages_subscription';
 
-let chat = [{ id: 1, name: 'chat1' }, { id: 2, name: 'chat2' }];
-let messages = [{ id: 1, text: 'test', createdAt: new Date(), chatId: 1 }, {
+let chats = [{ id: 1, name: 'chat1' }, { id: 2, name: 'chat2' }];
+let messages = [{ id: 1, text: 'Test message for Chat1', createdAt: new Date(), chatId: 1 }, {
   id: 2,
-  text: 'test2',
+  text: 'Test message for Chat2',
   createdAt: new Date(),
   chatId: 2
 }];
@@ -15,6 +15,8 @@ let messages = [{ id: 1, text: 'test', createdAt: new Date(), chatId: 1 }, {
 // Provide resolver functions for the GraphQL schema
 const resolvers = {
   Query: {
+    chats: () => chats,
+
     messages: async (parent, { chatId }) => {
       return messages.filter(message => message.chatId === chatId);
     }
