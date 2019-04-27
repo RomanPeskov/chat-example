@@ -6,7 +6,7 @@ const typeDefs = gql`
     id: String
     text: String!
     createdAt: String!
-    chat: Int!
+    chatId: Int!
   }
   
   type Chat {
@@ -20,7 +20,7 @@ const typeDefs = gql`
   }
   
   type Mutation {
-    addMessage(text: String!): Message
+    addMessage(text: String!, chatId: Int!): Message
     deleteMessage(id: String!): Message
   }
     

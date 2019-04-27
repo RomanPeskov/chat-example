@@ -12,7 +12,7 @@ const Chat = props => {
 
   useEffect(() => {
     if (!chatId && chats) {
-      setChatId(chats[0].id)
+      setChatId(+chats[0].id)
     }
   }, [chats]);
 
@@ -28,7 +28,7 @@ const Chat = props => {
             <h2 className="text-center chat-title">Chat</h2>
             <hr/>
             <Label for="exampleSelect">Select Chat</Label>
-            <Input type="select" name="select" id="exampleSelect" onChange={({ target: { value } }) => setChatId(value)} >
+            <Input type="select" name="select" id="exampleSelect" onChange={({ target: { value } }) => setChatId(+value)} >
               {renderChatOptions()}
             </Input>
             <hr/>

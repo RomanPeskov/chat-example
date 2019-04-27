@@ -1,5 +1,5 @@
 const Chat = require('./models/chat');
-const {PubSub} = require('apollo-server-express');
+const { PubSub } = require('apollo-server-express');
 
 const pubsub = new PubSub();
 const MESSAGES_SUBSCRIPTION = 'messages_subscription';
@@ -23,10 +23,10 @@ const resolvers = {
   },
 
   Mutation: {
-    addMessage: async (parent, { text }) => {
+    addMessage: async (parent, { text, chatId }) => {
       // const message = await new Chat({text}).save();
-      const message = { text, createdAt: new Date() };
-      chat.push(message);
+      const message = { text, chatId, createdAt: new Date() };
+      messages.push(message);
       pubsub.publish(MESSAGES_SUBSCRIPTION, {messagesUpdated: {mutation: 'CREATED', message}});
       return message;
     },

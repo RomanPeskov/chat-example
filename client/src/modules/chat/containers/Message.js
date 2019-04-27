@@ -14,10 +14,10 @@ const onAddMessage = (prev, newMessage) => {
   return {...prev, messages: [...prev.messages, {...newMessage, __typename: 'Message'}]}
 };
 
-const onDeleteMessage = (prev, id) => ({...prev, messages: prev.messages.filter(({id}) => id !== id)});
+const onDeleteMessage = (prev, id) => ({...prev, messages: prev.messages.filter(message => message.id !== id)});
 
 const Message = props => {
-  const {messagesUpdated, updateQuery, messages, loading, addMessage, deleteMessage } = props;
+  const {messagesUpdated, updateQuery, messages, loading, addMessage, deleteMessage, chatId } = props;
   useEffect(() => {
     if (messagesUpdated) {
       const {mutation, message} = messagesUpdated;
@@ -36,7 +36,7 @@ const Message = props => {
 
   return (<>
     <MessageList loading={loading} messages={messages} deleteMessage={deleteMessage}/>
-    <ChatForm addMessage={addMessage}/>
+    <ChatForm addMessage={addMessage} chatId={chatId}/>
   </>);
 };
 

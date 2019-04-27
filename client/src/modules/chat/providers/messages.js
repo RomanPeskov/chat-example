@@ -14,7 +14,7 @@ export const MESSAGES = gql`
 
 const messages = Component => props => {
   return (
-    <Query query={MESSAGES} variables={{ chatId: +props.chatId }} skip={!props.chatId} fetchPolicy={'network-only'} >
+    <Query query={MESSAGES} variables={{ chatId: props.chatId }} skip={!props.chatId} fetchPolicy={'network-only'} >
       {({ loading, data, subscribeToMore, updateQuery }) => {
         if (data) {
           return <Component {...props} updateQuery={updateQuery} subscribeToMore={subscribeToMore} loading={loading} messages={data.messages} />
