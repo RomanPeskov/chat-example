@@ -3,18 +3,9 @@ import { compose } from 'react-apollo';
 
 import { messages, addMessage, deleteMessage, messagesSubscription} from '../providers';
 import { MessageList, ChatForm } from '../components';
+import { onAddMessage } from '../providers/addMessage'
+import { onDeleteMessage } from '../providers/deleteMessage'
 import '../styles/styles.css';
-
-const onAddMessage = (prev, newMessage) => {
-  // ignore if duplicate
-  if (prev.messages && prev.messages.some(({id}) => id === newMessage.id)) {
-    return prev;
-  }
-
-  return {...prev, messages: [...prev.messages, {...newMessage, __typename: 'Message'}]}
-};
-
-const onDeleteMessage = (prev, id) => ({...prev, messages: prev.messages.filter(message => message.id !== id)});
 
 const Message = props => {
   const {messagesUpdated, updateQuery, messages, loading, addMessage, deleteMessage, chatId } = props;

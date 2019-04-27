@@ -25,4 +25,14 @@ const withAddMessage = Component => props => {
   );
 };
 
+const onAddMessage = (prev, newMessage) => {
+  // ignore if duplicate
+  if (prev.messages && prev.messages.some(({id}) => id === newMessage.id)) {
+    return prev;
+  }
+
+  return {...prev, messages: [...prev.messages, {...newMessage, __typename: 'Message'}]}
+};
+
 export default withAddMessage;
+export { onAddMessage };

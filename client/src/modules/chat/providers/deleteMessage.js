@@ -23,4 +23,7 @@ const withDeleteMessage = Component => props => {
   );
 };
 
+const onDeleteMessage = (prev, id) => ({...prev, messages: prev.messages.filter(message => message.id !== id)});
+
 export default withDeleteMessage;
+export { onDeleteMessage };
