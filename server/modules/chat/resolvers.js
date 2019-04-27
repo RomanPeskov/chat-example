@@ -1,5 +1,4 @@
 const uuidv4 = require('uuid/v4');
-const Chat = require('./models/chat');
 const { PubSub } = require('apollo-server-express');
 
 const pubsub = new PubSub();
@@ -32,8 +31,6 @@ const resolvers = {
     },
 
     deleteMessage: async (parent, {id}) => {
-      const message = await Chat.findById(id);
-      await Chat.deleteOne({_id: id}).exec();
       pubsub.publish(MESSAGES_SUBSCRIPTION, {messagesUpdated: {mutation: 'DELETED', message}});
       return message
     }

@@ -1,7 +1,6 @@
 const express = require('express');
 const { createServer } = require('http');
 const { ApolloServer } = require('apollo-server-express');
-// const mongoose = require('./config/database');
 
 const typeDefs = require('./modules/chat/graphqlSchema');
 const resolvers = require('./modules/chat/resolvers');
