@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 
 const MessageList = props => {
   const renderMessages = () => {
-    const {messages = [], loading, deleteMessage} = props;
+    const { messages = [], loading, deleteMessage } = props;
 
     if (!loading && messages && messages.length > 0) {
       return messages.map(message => {

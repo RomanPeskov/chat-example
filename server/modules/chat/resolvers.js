@@ -5,12 +5,10 @@ const pubsub = new PubSub();
 const MESSAGES_SUBSCRIPTION = 'messages_subscription';
 
 let chats = [{ id: 1, name: 'chat1' }, { id: 2, name: 'chat2' }];
-let messages = [{ id: '1', text: 'Test message for Chat1', createdAt: new Date(), chatId: 1 }, {
-  id: '2',
-  text: 'Test message for Chat2',
-  createdAt: new Date(),
-  chatId: 2
-}];
+let messages = [
+ { id: '1', text: 'Test message for Chat1', createdAt: new Date(), chatId: 1 },
+ { id: '2', text: 'Test message for Chat2', createdAt: new Date(), chatId: 2 }
+];
 
 // Provide resolver functions for the GraphQL schema
 const resolvers = {
@@ -25,7 +23,7 @@ const resolvers = {
   Mutation: {
     addMessage: async (parent, { text, chatId }) => {
       const message = { id: uuidv4(), text, chatId, createdAt: new Date() };
-      messages = [...messages, message];
+      messages = [ ...messages, message ];
       pubsub.publish(MESSAGES_SUBSCRIPTION, { messagesUpdated: { mutation: 'CREATED', message } });
       return message;
     },

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { compose } from 'react-apollo';
 
-import { messages, addMessage, deleteMessage, messagesSubscription} from '../providers';
+import { messages, addMessage, deleteMessage, messagesSubscription } from '../providers';
 import { MessageList, ChatForm } from '../components';
 import { onAddMessage } from '../providers/addMessage'
 import { onDeleteMessage } from '../providers/deleteMessage'

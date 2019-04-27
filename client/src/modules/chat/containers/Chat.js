@@ -21,24 +21,24 @@ const Chat = props => {
     return chats ? chats.map(({ id, name }) => <option key={id} value={id}>{name}</option>) : null;
   };
 
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <h2 className="text-center chat-title">Chat</h2>
-            <hr/>
-            <Label for="exampleSelect">Select Chat</Label>
-            <Input type="select" name="select" id="exampleSelect" onChange={({ target: { value } }) => setChatId(+value)} >
-              {renderChatOptions()}
-            </Input>
-            <hr/>
-            <div className="chat-container">
-              <Message chatId={chatId} />
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    );
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <h2 className="text-center chat-title">Chat</h2>
+          <hr/>
+          <Label for="exampleSelect">Select Chat</Label>
+          <Input type="select" name="select" id="exampleSelect" onChange={({ target: { value } }) => setChatId(+value)} >
+            {renderChatOptions()}
+          </Input>
+          <hr/>
+          <div className="chat-container">
+            <Message chatId={chatId} />
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default compose(chats)(Chat);

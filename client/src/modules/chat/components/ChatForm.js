@@ -3,7 +3,7 @@ import { Button, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 
 const ChatForm = props => {
   const { addMessage, chatId } = props;
-  const [text, setText] = useState('');
+  const [ text, setText ] = useState('');
 
   const onSubmit = () => {
     addMessage({ text, chatId });
