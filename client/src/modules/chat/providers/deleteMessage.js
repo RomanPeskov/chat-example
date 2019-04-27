@@ -5,7 +5,7 @@ import { Mutation } from 'react-apollo';
 const DELETE_MESSAGE = gql`
   mutation($id: String!) {
     deleteMessage(id: $id) {
-      _id
+      id
     }
   }
 `;

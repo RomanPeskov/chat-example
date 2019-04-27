@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 export const MESSAGES = gql`
   query messages($chatId: Int!) {
     messages(chatId: $chatId) {
-      _id
+      id
       text,
       createdAt
     }

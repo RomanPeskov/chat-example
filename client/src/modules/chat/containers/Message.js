@@ -5,17 +5,16 @@ import { messages, addMessage, deleteMessage, messagesSubscription} from '../pro
 import { MessageList, ChatForm } from '../components';
 import '../styles/styles.css';
 
-
 const onAddMessage = (prev, newMessage) => {
   // ignore if duplicate
-  if (prev.messages && prev.messages.some(({_id}) => _id === newMessage._id)) {
+  if (prev.messages && prev.messages.some(({id}) => id === newMessage.id)) {
     return prev;
   }
 
   return {...prev, messages: [...prev.messages, {...newMessage, __typename: 'Message'}]}
 };
 
-const onDeleteMessage = (prev, id) => ({...prev, messages: prev.messages.filter(({_id}) => id !== _id)});
+const onDeleteMessage = (prev, id) => ({...prev, messages: prev.messages.filter(({id}) => id !== id)});
 
 const Message = props => {
   const {messagesUpdated, updateQuery, messages, loading, addMessage, deleteMessage } = props;
@@ -27,7 +26,7 @@ const Message = props => {
           case 'CREATED':
             return onAddMessage(prev, message);
           case 'DELETED':
-            return onDeleteMessage(prev, message._id);
+            return onDeleteMessage(prev, message.id);
           default:
             return prev;
         }

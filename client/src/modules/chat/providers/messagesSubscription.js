@@ -7,11 +7,11 @@ export const MESSAGES_SUBSCRIPTION = gql`
     messagesUpdated {
       mutation
       message {
-        _id
+        id
         text
         createdAt
       }
-  }
+    }
   }
 `;
 

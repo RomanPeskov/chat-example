@@ -8,10 +8,10 @@ const MessageList = props => {
     if (!loading && messages && messages.length > 0) {
       return messages.map(message => {
         return (
-          <div key={message._id} className="message">
+          <div key={message.id} className="message">
             <div className="message-info">
               <div>{message.text}</div>
-              <Button close onClick={() => deleteMessage(message._id)}/>
+              <Button close onClick={() => deleteMessage(message.id)}/>
             </div>
             <div className="time">{new Date(+message.createdAt).toTimeString().slice(0, 5)}</div>
           </div>
