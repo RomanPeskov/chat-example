@@ -25,7 +25,7 @@ const typeDefs = gql`
   }
     
   type Subscription {
-   messagesUpdated: UpdateMessagesPayload
+   messagesUpdated(chatId: Int!): UpdateMessagesPayload
  }
  
   type UpdateMessagesPayload {

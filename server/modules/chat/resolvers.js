@@ -1,5 +1,5 @@
 const uuidv4 = require('uuid/v4');
-const { PubSub } = require('apollo-server-express');
+const { PubSub, withFilter } = require('apollo-server-express');
 
 const pubsub = new PubSub();
 const MESSAGES_SUBSCRIPTION = 'messages_subscription';
@@ -42,8 +42,10 @@ const resolvers = {
 
   Subscription: {
     messagesUpdated: {
-      // Additional event labels can be passed to asyncIterator creation
-      subscribe: () => pubsub.asyncIterator(MESSAGES_SUBSCRIPTION),
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(MESSAGES_SUBSCRIPTION),
+        ({ messagesUpdated: { message } }, { chatId }) => message.chatId === chatId
+      )
     },
   },
 };
