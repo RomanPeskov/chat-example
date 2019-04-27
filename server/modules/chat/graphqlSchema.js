@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');
 // Construct a schema using GraphQL schema language
 const typeDefs = gql`
   type Message {
-    id: String
+    id: String!
     text: String!
     createdAt: String!
     chatId: Int!
