@@ -1,3 +1,4 @@
+const uuidv4 = require('uuid/v4');
 const Chat = require('./models/chat');
 const { PubSub } = require('apollo-server-express');
 
@@ -24,8 +25,7 @@ const resolvers = {
 
   Mutation: {
     addMessage: async (parent, { text, chatId }) => {
-      // const message = await new Chat({text}).save();
-      const message = { text, chatId, createdAt: new Date() };
+      const message = { id: uuidv4(), text, chatId, createdAt: new Date() };
       messages.push(message);
       pubsub.publish(MESSAGES_SUBSCRIPTION, {messagesUpdated: {mutation: 'CREATED', message}});
       return message;
