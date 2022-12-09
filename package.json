@@ -21,7 +21,7 @@
     "apollo-server-express": "^2.2.6",
     "apollo-utilities": "^1.2.1",
     "bootstrap": "^4.2.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "graphql": "^14.1.1",
     "graphql-server-express": "^1.4.0",
     "react": "^16.8.6",
